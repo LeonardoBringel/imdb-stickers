@@ -21,6 +21,8 @@ public class Sticker {
             var inputStream = new URL(URL).openStream();
             this.image = ImageIO.read(inputStream);
 
+            this.resize(675, 1000);
+
             var file = new File("stickers/sticker.png");
             if (!file.getParentFile().exists()) {
                 file.getParentFile().mkdir();
@@ -31,5 +33,11 @@ public class Sticker {
             System.out.println("Oops! " + ex.getMessage());
             System.exit(0);
         }
+    }
+
+    private void resize(int width, int height) {
+        var bufferedImage = new BufferedImage(width, height, BufferedImage.TRANSLUCENT);
+        bufferedImage.getGraphics().drawImage(this.image, 0, 0, width, height, null);
+        this.image = bufferedImage;
     }
 }
