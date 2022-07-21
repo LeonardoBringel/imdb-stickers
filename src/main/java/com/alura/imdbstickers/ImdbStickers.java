@@ -12,6 +12,8 @@ public class ImdbStickers {
         movies.forEach((var movie) -> System.out.println(movie.getTitle() + " (" + movie.getYear() + ")" + " - " + movie.getImage()));
 
         var walleUrl = "https://m.media-amazon.com/images/M/MV5BMjExMTg5OTU0NF5BMl5BanBnXkFtZTcwMjMxMzMzMw@@.jpg";
-        new Sticker(walleUrl).generate();
+
+        var rating = 5;
+        new Sticker(walleUrl, rating).generate();
     }
 }
