@@ -22,6 +22,9 @@ public class Sticker {
             this.image = ImageIO.read(inputStream);
 
             var file = new File("stickers/sticker.png");
+            if (!file.getParentFile().exists()) {
+                file.getParentFile().mkdir();
+            }
             ImageIO.write(this.image, "png", file);
 
         } catch (IOException ex) {
