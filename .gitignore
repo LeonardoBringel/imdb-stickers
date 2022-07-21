@@ -1,2 +1,5 @@
 # API sensitive data
 api.properties
+
+# local files
+stickers
