@@ -9,7 +9,7 @@ import java.net.http.HttpResponse.BodyHandlers;
 
 public class Client {
 
-    public static String FetchData(String url) {
+    public static String fetchData(String url) {
 
         final var CLIENT = HttpClient.newHttpClient();
 
