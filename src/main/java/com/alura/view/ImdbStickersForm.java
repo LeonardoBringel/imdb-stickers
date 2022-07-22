@@ -28,15 +28,20 @@ public class ImdbStickersForm extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
+        panel.setBackground(new java.awt.Color(44, 51, 51));
+
         lblImdbStickers.setFont(new java.awt.Font("Stencil", 0, 14)); // NOI18N
+        lblImdbStickers.setForeground(new java.awt.Color(251, 171, 96));
         lblImdbStickers.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblImdbStickers.setText("Alura & Imdb");
 
         lblPoweredBy.setFont(new java.awt.Font("Stencil", 0, 18)); // NOI18N
+        lblPoweredBy.setForeground(new java.awt.Color(251, 171, 96));
         lblPoweredBy.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblPoweredBy.setText("Powered By");
 
         lblAluraAndImdb.setFont(new java.awt.Font("Stencil", 0, 24)); // NOI18N
+        lblAluraAndImdb.setForeground(new java.awt.Color(251, 171, 96));
         lblAluraAndImdb.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblAluraAndImdb.setText("Imdb Stickers");
 
