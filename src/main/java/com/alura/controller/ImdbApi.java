@@ -21,17 +21,14 @@ public abstract class ImdbApi {
         var uri = URI.create(URL);
         var request = HttpRequest.newBuilder(uri).GET().build();
 
+        String json = "";
         try {
             HttpResponse<String> response = CLIENT.send(request, BodyHandlers.ofString());
-            return MoviesFromJson(response.body());
+            json = response.body();
         } catch (IOException | InterruptedException ex) {
             System.out.println("Oops! " + ex.getMessage());
             System.exit(0);
         }
-        return null;
-    }
-
-    private static List<Movie> MoviesFromJson(String json) {
 
         var movies = new Gson().fromJson(json, Movies.class);
         return movies.getMovies();
