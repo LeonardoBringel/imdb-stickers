@@ -6,7 +6,9 @@ import java.util.Properties;
 
 public class ApiController {
 
-    public static String getApiUrl() {
+    public static final String TOP_MOVIES = "topMoviesUrl";
+
+    public static String getApiUrl(String propertyName) {
 
         Properties properties = new Properties();
         try {
@@ -16,6 +18,6 @@ public class ApiController {
             System.out.println("Oops! " + ex.getMessage());
             System.exit(0);
         }
-        return properties.getProperty("topmoviesUrl");
+        return properties.getProperty(propertyName);
     }
 }
