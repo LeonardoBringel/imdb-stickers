@@ -1,8 +1,13 @@
 package com.alura.view;
 
+import com.alura.controller.ImdbApi;
+import com.alura.model.Movie;
+import java.util.List;
 import javax.swing.table.DefaultTableModel;
 
 public class ImdbStickersForm extends javax.swing.JFrame {
+
+    private final List<Movie> items;
 
     public ImdbStickersForm() {
         initComponents();
@@ -10,8 +15,14 @@ public class ImdbStickersForm extends javax.swing.JFrame {
         this.setTitle("Imdb Stickers");
         this.setResizable(false);
         this.setLocationRelativeTo(null);
-        
+
+        this.items = ImdbApi.extractMovies();
+        if (this.items.isEmpty()) {
+            throw new RuntimeException("Oops! Something went wrong loading movies from IMDB");
+        }
+
         this.configureTable();
+        this.populateTable();
     }
 
     /**
@@ -169,5 +180,19 @@ public class ImdbStickersForm extends javax.swing.JFrame {
         tabItems.getColumnModel().getColumn(1).setPreferredWidth((int) (tableWidth * 0.5));
         tabItems.getColumnModel().getColumn(2).setPreferredWidth((int) (tableWidth * 0.2));
         tabItems.getColumnModel().getColumn(3).setPreferredWidth((int) (tableWidth * 0.2));
+    }
+
+    private void populateTable() {
+
+        DefaultTableModel model = (DefaultTableModel) tabItems.getModel();
+
+        this.items.forEach((var item) -> {
+            model.addRow(new Object[]{
+                item.getRank(),
+                item.getTitle(),
+                item.getYear(),
+                item.getRating()
+            });
+        });
     }
 }
