@@ -1,13 +1,17 @@
 package com.alura.view;
 
+import javax.swing.table.DefaultTableModel;
+
 public class ImdbStickersForm extends javax.swing.JFrame {
 
     public ImdbStickersForm() {
         initComponents();
-        
+
         this.setTitle("Imdb Stickers");
         this.setResizable(false);
         this.setLocationRelativeTo(null);
+        
+        this.configureTable();
     }
 
     /**
@@ -23,8 +27,8 @@ public class ImdbStickersForm extends javax.swing.JFrame {
         lblImdbStickers = new javax.swing.JLabel();
         lblPoweredBy = new javax.swing.JLabel();
         lblAluraAndImdb = new javax.swing.JLabel();
-        scrContent = new javax.swing.JScrollPane();
-        tabContent = new javax.swing.JTable();
+        scrItems = new javax.swing.JScrollPane();
+        tabItems = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -45,7 +49,7 @@ public class ImdbStickersForm extends javax.swing.JFrame {
         lblAluraAndImdb.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblAluraAndImdb.setText("Imdb Stickers");
 
-        tabContent.setModel(new javax.swing.table.DefaultTableModel(
+        tabItems.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -56,8 +60,8 @@ public class ImdbStickersForm extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        tabContent.getTableHeader().setReorderingAllowed(false);
-        scrContent.setViewportView(tabContent);
+        tabItems.getTableHeader().setReorderingAllowed(false);
+        scrItems.setViewportView(tabItems);
 
         javax.swing.GroupLayout panelLayout = new javax.swing.GroupLayout(panel);
         panel.setLayout(panelLayout);
@@ -69,7 +73,7 @@ public class ImdbStickersForm extends javax.swing.JFrame {
                     .addComponent(lblImdbStickers, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(lblPoweredBy, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 788, Short.MAX_VALUE)
                     .addComponent(lblAluraAndImdb, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 788, Short.MAX_VALUE)
-                    .addComponent(scrContent))
+                    .addComponent(scrItems))
                 .addContainerGap())
         );
         panelLayout.setVerticalGroup(
@@ -78,7 +82,7 @@ public class ImdbStickersForm extends javax.swing.JFrame {
                 .addGap(12, 12, 12)
                 .addComponent(lblAluraAndImdb)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(scrContent, javax.swing.GroupLayout.DEFAULT_SIZE, 487, Short.MAX_VALUE)
+                .addComponent(scrItems, javax.swing.GroupLayout.DEFAULT_SIZE, 487, Short.MAX_VALUE)
                 .addGap(18, 18, 18)
                 .addComponent(lblPoweredBy)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -140,7 +144,30 @@ public class ImdbStickersForm extends javax.swing.JFrame {
     private javax.swing.JLabel lblImdbStickers;
     private javax.swing.JLabel lblPoweredBy;
     private javax.swing.JPanel panel;
-    private javax.swing.JScrollPane scrContent;
-    private javax.swing.JTable tabContent;
+    private javax.swing.JScrollPane scrItems;
+    private javax.swing.JTable tabItems;
     // End of variables declaration//GEN-END:variables
+
+    private void configureTable() {
+
+        DefaultTableModel model = new DefaultTableModel() {
+
+            @Override
+            public boolean isCellEditable(int row, int column) {
+                return false;
+            }
+        };
+
+        model.addColumn("Rank");
+        model.addColumn("Title");
+        model.addColumn("Year");
+        model.addColumn("Rating");
+        tabItems.setModel(model);
+
+        int tableWidth = tabItems.getWidth();
+        tabItems.getColumnModel().getColumn(0).setPreferredWidth((int) (tableWidth * 0.1));
+        tabItems.getColumnModel().getColumn(1).setPreferredWidth((int) (tableWidth * 0.5));
+        tabItems.getColumnModel().getColumn(2).setPreferredWidth((int) (tableWidth * 0.2));
+        tabItems.getColumnModel().getColumn(3).setPreferredWidth((int) (tableWidth * 0.2));
+    }
 }
