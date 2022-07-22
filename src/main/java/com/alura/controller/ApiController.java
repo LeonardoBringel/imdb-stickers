@@ -8,7 +8,7 @@ public class ApiController {
 
     public static final String TOP_MOVIES = "topMoviesUrl";
 
-    public static String getApiUrl(String propertyName) {
+    public static String getUrl(String propertyName) {
 
         Properties properties = new Properties();
         try {

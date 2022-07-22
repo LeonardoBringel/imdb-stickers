@@ -15,7 +15,7 @@ public abstract class ImdbApi {
 
     public static List<Movie> FetchMovies() {
 
-        final String URL = ApiController.getApiUrl(ApiController.TOP_MOVIES);
+        final String URL = ApiController.getUrl(ApiController.TOP_MOVIES);
         final var CLIENT = HttpClient.newHttpClient();
 
         var uri = URI.create(URL);
