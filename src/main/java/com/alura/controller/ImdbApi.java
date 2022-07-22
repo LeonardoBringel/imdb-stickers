@@ -13,22 +13,28 @@ import java.util.List;
 
 public abstract class ImdbApi {
 
-    public static List<Movie> FetchMovies() {
+    public static String FetchData(String url) {
 
-        final String URL = ApiController.getUrl(ApiController.TOP_MOVIES);
         final var CLIENT = HttpClient.newHttpClient();
 
-        var uri = URI.create(URL);
+        var uri = URI.create(url);
         var request = HttpRequest.newBuilder(uri).GET().build();
 
-        String json = "";
         try {
             HttpResponse<String> response = CLIENT.send(request, BodyHandlers.ofString());
-            json = response.body();
+            return response.body();
         } catch (IOException | InterruptedException ex) {
             System.out.println("Oops! " + ex.getMessage());
             System.exit(0);
         }
+        return null;
+    }
+
+    public static List<Movie> FetchMovies() {
+
+        final String URL = ApiController.getUrl(ApiController.TOP_MOVIES);
+
+        String json = FetchData(URL);
 
         var movies = new Gson().fromJson(json, Movies.class);
         return movies.getMovies();
