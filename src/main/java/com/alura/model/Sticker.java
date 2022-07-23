@@ -28,6 +28,7 @@ public class Sticker {
             this.resize(675, 1000);
 
             if (this.RATING > 0) {
+                this.addFooterShadow(50);
                 this.addStars();
             }
 
@@ -41,6 +42,15 @@ public class Sticker {
             System.out.println("Oops! " + ex.getMessage());
             System.exit(0);
         }
+    }
+
+    private void addFooterShadow(int alpha) {
+        var graphics = this.image.getGraphics();
+
+        graphics.setColor(new Color(0, 0, 0, alpha));
+
+        int footerHeight = (int) (this.image.getHeight() * 0.85);
+        graphics.fillRect(0, footerHeight, this.image.getWidth(), this.image.getHeight());
     }
 
     private void addStars() {
@@ -62,7 +72,7 @@ public class Sticker {
     }
 
     private void resize(int width, int height) {
-        var bufferedImage = new BufferedImage(width, height, BufferedImage.TRANSLUCENT);
+        var bufferedImage = new BufferedImage(width, height, BufferedImage.TYPE_INT_ARGB);
         bufferedImage.getGraphics().drawImage(this.image, 0, 0, width, height, null);
         this.image = bufferedImage;
     }
