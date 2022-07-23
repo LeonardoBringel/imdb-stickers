@@ -138,6 +138,7 @@ public class MovieForm extends javax.swing.JFrame {
                 .addGroup(panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(lblImage, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(panelLayout.createSequentialGroup()
+                        .addGap(9, 9, 9)
                         .addComponent(lblRank)
                         .addGap(18, 18, 18)
                         .addComponent(lblYear)
