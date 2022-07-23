@@ -1,11 +1,13 @@
 package com.alura.view;
 
 import com.alura.model.Movie;
+import com.alura.model.Sticker;
 import java.io.IOException;
 import java.net.URL;
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 
 public class MovieForm extends javax.swing.JFrame {
 
@@ -92,6 +94,11 @@ public class MovieForm extends javax.swing.JFrame {
         btnRate.setFont(new java.awt.Font("Serif", 0, 18)); // NOI18N
         btnRate.setForeground(new java.awt.Color(251, 171, 96));
         btnRate.setText("Rate!");
+        btnRate.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRateActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout panelLayout = new javax.swing.GroupLayout(panel);
         panel.setLayout(panelLayout);
@@ -160,6 +167,12 @@ public class MovieForm extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnRateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRateActionPerformed
+        new Sticker(MOVIE.getImage(), cbxRate.getSelectedIndex() + 1).generate();
+
+        JOptionPane.showMessageDialog(null, "Your new sticker has been generated!");
+    }//GEN-LAST:event_btnRateActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnRate;
