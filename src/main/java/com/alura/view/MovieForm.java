@@ -170,7 +170,9 @@ public class MovieForm extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnRateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRateActionPerformed
-        new Sticker(MOVIE.getLargeImage(), cbxRate.getSelectedIndex() + 1).generate();
+        int rating = cbxRate.getSelectedIndex() + 1;
+        
+        new Sticker(MOVIE.getLargeImage(), MOVIE.getId(), rating).generate();
 
         JOptionPane.showMessageDialog(null, "Your new sticker has been generated!");
     }//GEN-LAST:event_btnRateActionPerformed

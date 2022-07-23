@@ -11,12 +11,14 @@ import javax.imageio.ImageIO;
 public class Sticker {
 
     public final String URL;
+    public final String NAME;
     public final int RATING;
 
     private BufferedImage image;
 
-    public Sticker(String url, int rating) {
+    public Sticker(String url, String name, int rating) {
         this.URL = url;
+        this.NAME = name;
         this.RATING = rating;
     }
 
@@ -32,7 +34,7 @@ public class Sticker {
                 this.addStars();
             }
 
-            var file = new File("stickers/sticker.png");
+            var file = new File("stickers/" + this.NAME + ".png");
             if (!file.getParentFile().exists()) {
                 file.getParentFile().mkdir();
             }
