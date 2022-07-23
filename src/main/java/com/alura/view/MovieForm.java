@@ -1,17 +1,27 @@
 package com.alura.view;
 
 import com.alura.model.Movie;
+import java.io.IOException;
+import java.net.URL;
+import javax.imageio.ImageIO;
+import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 
 public class MovieForm extends javax.swing.JFrame {
 
+    private final Movie MOVIE;
+
     public MovieForm(Movie movie) {
         initComponents();
+
+        this.MOVIE = movie;
 
         this.setTitle("Movie");
         this.setResizable(false);
         this.setLocationRelativeTo(null);
         this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+
+        this.setTextLabels();
     }
 
     /**
@@ -164,4 +174,25 @@ public class MovieForm extends javax.swing.JFrame {
     private javax.swing.JLabel lblYear;
     private javax.swing.JPanel panel;
     // End of variables declaration//GEN-END:variables
+
+    private void setTextLabels() {
+        try {
+            var url = new URL(MOVIE.getImage());
+            var image = ImageIO.read(url);
+            lblImage.setIcon(new ImageIcon(image));
+
+            String[] title = MOVIE.getTitle().split(":");
+            lblTitle.setText(title[0]);
+            lblSubTitle.setText(title.length > 1 ? title[1] : " ");
+
+            lblRank.setText("Rank: " + MOVIE.getRank());
+            lblYear.setText("Year: " + MOVIE.getYear());
+            lblImdbRating.setText("Imdb Rating: " + MOVIE.getRating());
+            lblImdbRatingCount.setText("Imdb Rating Count: " + MOVIE.getRatingCount());
+
+        } catch (IOException ex) {
+            System.out.println("Oops! " + ex.getMessage());
+            this.dispose();
+        }
+    }
 }
