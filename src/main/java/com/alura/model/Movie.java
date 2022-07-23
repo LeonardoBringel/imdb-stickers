@@ -68,6 +68,10 @@ public class Movie {
     public String getImage() {
         return image;
     }
+    
+    public String getLargeImage() {
+        return image.replaceAll("._.+_", "");
+    }
 
     public String getCrew() {
         return crew;
