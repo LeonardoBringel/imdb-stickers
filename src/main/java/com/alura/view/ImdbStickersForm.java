@@ -72,6 +72,11 @@ public class ImdbStickersForm extends javax.swing.JFrame {
             }
         ));
         tabItems.getTableHeader().setReorderingAllowed(false);
+        tabItems.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tabItemsMouseClicked(evt);
+            }
+        });
         scrItems.setViewportView(tabItems);
 
         javax.swing.GroupLayout panelLayout = new javax.swing.GroupLayout(panel);
@@ -114,6 +119,13 @@ public class ImdbStickersForm extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void tabItemsMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabItemsMouseClicked
+        int row = tabItems.getSelectedRow();
+
+        Movie selectedItem = this.items.get(row);
+        new MovieForm(selectedItem).setVisible(true);
+    }//GEN-LAST:event_tabItemsMouseClicked
 
     /**
      * @param args the command line arguments
