@@ -22,7 +22,7 @@ public class ImdbStickersForm extends javax.swing.JFrame {
         }
 
         this.configureTable();
-        this.populateTable();
+        this.populateTable("");
     }
 
     /**
@@ -40,6 +40,7 @@ public class ImdbStickersForm extends javax.swing.JFrame {
         lblAluraAndImdb = new javax.swing.JLabel();
         scrItems = new javax.swing.JScrollPane();
         tabItems = new javax.swing.JTable();
+        txtSearch = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -79,6 +80,16 @@ public class ImdbStickersForm extends javax.swing.JFrame {
         });
         scrItems.setViewportView(tabItems);
 
+        txtSearch.setBackground(new java.awt.Color(44, 51, 51));
+        txtSearch.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
+        txtSearch.setForeground(new java.awt.Color(251, 171, 96));
+        txtSearch.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        txtSearch.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtSearchKeyReleased(evt);
+            }
+        });
+
         javax.swing.GroupLayout panelLayout = new javax.swing.GroupLayout(panel);
         panel.setLayout(panelLayout);
         panelLayout.setHorizontalGroup(
@@ -91,6 +102,10 @@ public class ImdbStickersForm extends javax.swing.JFrame {
                     .addComponent(lblAluraAndImdb, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 788, Short.MAX_VALUE)
                     .addComponent(scrItems))
                 .addContainerGap())
+            .addGroup(panelLayout.createSequentialGroup()
+                .addGap(275, 275, 275)
+                .addComponent(txtSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         panelLayout.setVerticalGroup(
             panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -98,8 +113,10 @@ public class ImdbStickersForm extends javax.swing.JFrame {
                 .addGap(12, 12, 12)
                 .addComponent(lblAluraAndImdb)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(scrItems, javax.swing.GroupLayout.DEFAULT_SIZE, 487, Short.MAX_VALUE)
+                .addComponent(scrItems, javax.swing.GroupLayout.PREFERRED_SIZE, 500, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
+                .addComponent(txtSearch, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 32, Short.MAX_VALUE)
                 .addComponent(lblPoweredBy)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(lblImdbStickers)
@@ -121,11 +138,16 @@ public class ImdbStickersForm extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void tabItemsMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabItemsMouseClicked
-        int row = tabItems.getSelectedRow();
+        int selectedRow = tabItems.getSelectedRow();
+        int itemRank = (int) tabItems.getValueAt(selectedRow, 0);
 
-        Movie selectedItem = this.items.get(row);
+        Movie selectedItem = this.items.get(itemRank - 1);
         new MovieForm(selectedItem).setVisible(true);
     }//GEN-LAST:event_tabItemsMouseClicked
+
+    private void txtSearchKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtSearchKeyReleased
+        this.populateTable(txtSearch.getText());
+    }//GEN-LAST:event_txtSearchKeyReleased
 
     /**
      * @param args the command line arguments
@@ -169,6 +191,7 @@ public class ImdbStickersForm extends javax.swing.JFrame {
     private javax.swing.JPanel panel;
     private javax.swing.JScrollPane scrItems;
     private javax.swing.JTable tabItems;
+    private javax.swing.JTextField txtSearch;
     // End of variables declaration//GEN-END:variables
 
     private void configureTable() {
@@ -194,17 +217,20 @@ public class ImdbStickersForm extends javax.swing.JFrame {
         tabItems.getColumnModel().getColumn(3).setPreferredWidth((int) (tableWidth * 0.2));
     }
 
-    private void populateTable() {
+    private void populateTable(String search) {
 
         DefaultTableModel model = (DefaultTableModel) tabItems.getModel();
+        model.setRowCount(0);
 
         this.items.forEach((var item) -> {
-            model.addRow(new Object[]{
-                item.getRank(),
-                item.getTitle(),
-                item.getYear(),
-                item.getRating()
-            });
+            if (item.getTitle().toUpperCase().contains(search.toUpperCase())) {
+                model.addRow(new Object[]{
+                    item.getRank(),
+                    item.getTitle(),
+                    item.getYear(),
+                    item.getRating()
+                });
+            }
         });
     }
 }
