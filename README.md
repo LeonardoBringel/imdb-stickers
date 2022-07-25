@@ -49,6 +49,22 @@ The solution presented by ImdbStickers is to generate stickers based on the user
 ![imdbstickers-preview-03](https://user-images.githubusercontent.com/64162701/180671073-19ebc82a-57a2-4278-ad79-22e3dce2967e.png)
 
 
+## 🚚 Getting Started
+
+Clone this repository and add project dependencies.
+
+```
+git clone https://github.com/LeonardoBringel/ImdbStickers
+mvn clean install
+```
+
+Create an account at [IMDb API](https://imdb-api.com/) and generate your key. Then create an api.properties in the project folder as follows.
+
+```
+topMoviesUrl = https://imdb-api.com/en/API/Top250Movies/YOUR_API_KEY
+```
+
+
 ## 📄 License
 
 This project is MIT licensed, as found in the [LICENSE](./LICENSE) file.
