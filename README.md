@@ -10,8 +10,11 @@
 
 <p align="center">
   <a href="https://gitmoji.dev">
-        <img src="https://img.shields.io/badge/gitmoji-%20😜%20😍-FFDD67.svg" alt="Gitmoji">
-    </a>
+    <img src="https://img.shields.io/badge/gitmoji-%20😜%20😍-FFDD67.svg" alt="Gitmoji">
+  </a>
+  <a href="https://github.com/LeonardoBringel/ImdbStickers/blob/main/LICENSE">
+    <img src="https://img.shields.io/github/license/LeonardoBringel/ImdbStickers?color=blue" alt="License">
+  </a>
 </p>
 
 
@@ -44,3 +47,8 @@ The solution presented by ImdbStickers is to generate stickers based on the user
 ![imdbstickers-preview-02](https://user-images.githubusercontent.com/64162701/180670936-14d91fe6-d2e1-417d-a12d-673f4e630dd3.png)
 
 ![imdbstickers-preview-03](https://user-images.githubusercontent.com/64162701/180671073-19ebc82a-57a2-4278-ad79-22e3dce2967e.png)
+
+
+## 📄 License
+
+This project is MIT licensed, as found in the [LICENSE](./LICENSE) file.
